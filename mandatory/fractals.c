@@ -41,7 +41,63 @@ double	ship(double x, double y, t_display display)
 	return (utils);
 }
 
-double	mandelbrot(double x, double y, t_display display)
+double	mandelbrot1(double x, double y, t_display display)
+{
+	t_dot	tmp;
+	t_dot	res;
+	double	utils;
+	int		i;
+
+	x = ((x - (WIDTH / 2)) / display.zoom + display.offset_x);
+	y = ((y - (HEIGHT / 2)) / display.zoom + display.offset_y);
+	res.x = 0;
+	res.y = 0;
+	tmp.x = 0;
+	tmp.y = 0;
+	i = 0;
+	while (i < display.maxiter && tmp.x + tmp.y < 50 * display.maxiter)
+	{
+		utils = res.x;
+		res.x = x + tmp.x - tmp.y ;
+		res.y = y + (utils + utils) * res.y;
+		tmp.x = res.x * res.x;
+		tmp.y = res.y * res.y;
+		i++;
+	}
+	utils = i;
+	if (i != display.maxiter)
+		utils = 0;
+	return (utils);
+}
+
+double	mandelbrot2(double x, double y, t_display display)
+{
+	t_dot	tmp;
+	t_dot	res;
+	double	utils;
+	int		i;
+
+	x = ((x - (WIDTH / 2)) / display.zoom + display.offset_x);
+	y = ((y - (HEIGHT / 2)) / display.zoom + display.offset_y);
+	res.x = 0;
+	res.y = 0;
+	tmp.x = 0;
+	tmp.y = 0;
+	i = 0;
+	while (i < display.maxiter && tmp.x + tmp.y < 50 * display.maxiter)
+	{
+		utils = res.x;
+		res.x = x + tmp.x - tmp.y ;
+		res.y = y + (utils + utils) * res.y;
+		tmp.x = res.x * res.x;
+		tmp.y = res.y * res.y;
+		i++;
+	}
+	utils = i;
+	return (utils);
+}
+
+double	mandelbrot3(double x, double y, t_display display)
 {
 	t_dot	tmp;
 	t_dot	res;

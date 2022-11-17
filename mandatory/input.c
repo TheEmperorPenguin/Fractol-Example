@@ -14,8 +14,10 @@
 
 t_builtin	*ft_builtin(void)
 {
-	static t_builtin	builtin[4] = {
-	{"mandelbrot", &mandelbrot},
+	static t_builtin	builtin[6] = {
+	{"mandelbrot1", &mandelbrot1},
+	{"mandelbrot2", &mandelbrot2},
+	{"mandelbrot3", &mandelbrot3},
 	{"julia", &julia},
 	{"burning_ship", &ship},
 	{NULL, NULL}
@@ -42,7 +44,7 @@ void	*ft_fractal_choose(char *str)
 
 int	ft_error(void)
 {
-	write(1, "Wrong arg, valid arguments are:\n'mandelbrot'\n'julia'\n", 53);
+	write(1, "Wrong arg, valid arguments are:\n'mandelbrot[1-3]'\n'julia'\n", 58);
 	write(1, "'burning_ship'\n", 15);
 	exit (0);
 }
