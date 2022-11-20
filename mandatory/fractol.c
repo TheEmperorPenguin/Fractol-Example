@@ -6,7 +6,7 @@
 /*   By: gtouzali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 09:53:35 by gtouzali          #+#    #+#             */
-/*   Updated: 2022/11/16 21:44:10 by gtouzali         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:09:52 by gtouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ t_display	display_init(void)
 {
 	t_display	display;
 
+	display.angle = 0;
 	display.offset_x = 0;
 	display.offset_y = 0;
 	display.zoom = 200;
@@ -30,6 +31,7 @@ t_display	ft_julia_init(char *x, char *y)
 {
 	t_display	display;
 
+	display.angle = 0;
 	display.offset_x = 0;
 	display.offset_y = 0;
 	display.zoom = 200;

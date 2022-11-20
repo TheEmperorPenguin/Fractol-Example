@@ -6,7 +6,7 @@
 /*   By: gtouzali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 09:09:04 by gtouzali          #+#    #+#             */
-/*   Updated: 2022/11/16 22:15:15 by gtouzali         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:09:26 by gtouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,19 @@ int	key_hook(int keycode, t_vars *vars)
 	else if (keycode == 0xff54)
 		display.offset_y += 100.0 / display.zoom;
 	else if (keycode == 0x20)
-		display.shift += 5;
+		display.angle += 10;
+	else if (keycode == 0x31)
+		vars->fractal = &mandelbrot1;
+	else if (keycode == 0x32)
+		vars->fractal = &mandelbrot2;
+	else if (keycode == 0x33)
+		vars->fractal = &mandelbrot3;
+	else if (keycode == 0x34)
+		vars->fractal = &mandelbrot4;
+	else if (keycode == 0x35)
+		vars->fractal = &julia;
+	else if (keycode == 0x36)
+		vars->fractal = &ship;
 	if (vars->display.zoom == 0)
 		vars->display.zoom++;
 	vars->display = display;

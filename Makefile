@@ -1,23 +1,44 @@
 NAME = fractol
 
+NAME_BONUS = fractol_bonus
+
+MLX = ./mlx_linux/libmlx.a
+
+MLX_SUBDIR = ./mlx_linux
+
 OBJ = $(SRC:.c=.o)
 
-SRC =	mandatory/fractals.c    \
-		mandatory/fractol_utils.c\
+SRC =	mandatory/fractals.c		\
+		mandatory/fractol_utils.c	\
 		mandatory/mouse.c			\
-		mandatory/keyboard.c		 \
-		mandatory/image.c           \
-		mandatory/input.c            \
+		mandatory/keyboard.c		\
+		mandatory/image.c			\
+		mandatory/input.c			\
 		mandatory/fractol.c			\
+
+BONUS =	bonus/fractals_bonus.c		\
+		bonus/fractol_utils_bonus.c	\
+		bonus/mouse_bonus.c			\
+		bonus/keyboard_bonus.c		\
+		bonus/image_bonus.c			\
+		bonus/input_bonus.c			\
+		bonus/fractol_bonus.c		\
+
+OBJ_BONUS = $(BONUS:.c=.o)
 
 CC = clang
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c 
 
-all: $(NAME)
+LDFLAGS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o 
+
+all: $(MLX) $(NAME)
+
+$(MLX):
+	@$(MAKE) -C $(MLX_SUBDIR)
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) $(OBJ) $(LDFLAGS) $(NAME)
 	@echo " ________ .-------.       ____        _______ ,---------.                ,-----.      .---.      ";
 	@echo "|        ||  _ _   \    .'  __ \`.    /   __  \\          \             .'  .-,  '.    | ,_|      ";
 	@echo "|   .----'| ( ' )  |   /   '  \  \  | ,_/  \__)\`--.  ,---'            / ,-.|  \ _ \ ,-./  )      ";
@@ -30,14 +51,18 @@ $(NAME): $(OBJ)
 	@echo "                                                                                                 ";
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -f ${OBJ}
+	rm -f ${OBJ} ${OBJ_BONUS}
+	@$(MAKE) -C $(MLX_SUBDIR) clean
 
 fclean: clean
-	@rm -f ${NAME}
+	@rm -f ${NAME} ${NAME_BONUS}
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: $(MLX) $(OBJ_BONUS)	
+	@$(CC) $(OBJ_BONUS) $(LDFLAGS) $(NAME_BONUS)
+
+.PHONY: all clean fclean re bonus 

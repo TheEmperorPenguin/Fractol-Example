@@ -6,7 +6,7 @@
 /*   By: gtouzali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 18:02:45 by gtouzali          #+#    #+#             */
-/*   Updated: 2022/11/16 22:02:17 by gtouzali         ###   ########.fr       */
+/*   Updated: 2022/11/18 13:10:05 by gtouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_data {
 }			t_data;
 
 struct s_display {
+	double				angle;
 	double				offset_x;
 	double				offset_y;
 	double				julia_x;
@@ -69,7 +70,7 @@ double		gabi(double x, double y, t_display display);
 double		mandelbrot1(double x, double y, t_display display);
 double		mandelbrot2(double x, double y, t_display display);
 double		mandelbrot3(double x, double y, t_display display);
-double		topinambour(double x, double y, t_display display);
+double		mandelbrot4(double x, double y, t_display display);
 double		julia(double x, double y, t_display display);
 int			ft_close(int keycode, t_vars *vars);
 int			cross(t_vars *vars);

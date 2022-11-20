@@ -6,7 +6,7 @@
 /*   By: gtouzali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 09:50:56 by gtouzali          #+#    #+#             */
-/*   Updated: 2022/11/16 22:01:46 by gtouzali         ###   ########.fr       */
+/*   Updated: 2022/11/18 14:14:32 by gtouzali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 t_builtin	*ft_builtin(void)
 {
-	static t_builtin	builtin[6] = {
+	static t_builtin	builtin[7] = {
 	{"mandelbrot1", &mandelbrot1},
 	{"mandelbrot2", &mandelbrot2},
 	{"mandelbrot3", &mandelbrot3},
+	{"mandelbrot4", &mandelbrot4},
 	{"julia", &julia},
 	{"burning_ship", &ship},
 	{NULL, NULL}
@@ -44,7 +45,7 @@ void	*ft_fractal_choose(char *str)
 
 int	ft_error(void)
 {
-	write(1, "Wrong arg, valid arguments are:\n'mandelbrot[1-3]'\n'julia'\n", 58);
+	write(1, "Wrong arg, valid arguments are:\n'mandelbrot[1-4]'\n'julia'\n", 58);
 	write(1, "'burning_ship'\n", 15);
 	exit (0);
 }
